@@ -1,0 +1,7 @@
+name = "TrialDocs"
+uuid = "a95043be-bd91-439a-969f-b510d43dd3af"
+authors = ["sandreza <andrenogueirasouza@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
