@@ -2,7 +2,7 @@ module TrialDocs
 
 include("Random/new_functions.jl")
 
-export hello, domath, test_args
+export hello, domath, test_args, test_args_kw
 
 """
     hello(who::String)

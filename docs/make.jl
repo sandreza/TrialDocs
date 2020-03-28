@@ -1,12 +1,17 @@
 push!(LOAD_PATH,"../src/")
 using Documenter, TrialDocs
 
+format = Documenter.HTML(
+    collapselevel = 1
+)
+
 makedocs(
     modules = [TrialDocs],
     pages = [
         "Home" => "index.md",
         "Contribution Guide" => [
-            "Iterative Solvers" => "iterative_solvers/contribution_guide.md"
+            "Iterative Solvers" => "iterative_solvers/contribution_guide.md",
+            "Time Stepping" => "time_steppers/contribution_guide.md",
         ],
         "Function Index" => "function_index.md"
     ],
