@@ -5,7 +5,10 @@ makedocs(
     modules = [TrialDocs],
     pages = [
         "Home" => "index.md",
-        "Contribution Guide" => "iterative_solvers/contribution_guide.md"
+        "Contribution Guide" => [
+            "Iterative Solvers" => "iterative_solvers/contribution_guide.md"
+        ],
+        "Function Index" => "function_index.md"
     ],
     sitename = "TrialDocs"
 )
