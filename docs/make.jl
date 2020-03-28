@@ -4,7 +4,8 @@ using Documenter, TrialDocs
 makedocs(
     modules = [TrialDocs],
     pages = [
-        "index.md"
+        "Home" => "index.md",
+        "Contribution Guide" => "iterative_solvers/contribution_guide.md"
     ],
     sitename = "TrialDocs"
 )

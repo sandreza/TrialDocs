@@ -2,6 +2,7 @@
 
 A Julia Repo for Creating Documentation
 
-```@autodocs
-Modules = [TrialDocs]
-```
+
+## More Info
+
+Just testing subsections
