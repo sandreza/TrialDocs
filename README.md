@@ -1,4 +1,4 @@
 # TrialDocs
 
 
-[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://sandreza.github.io/TrialDocs/latest)
+[![](https://img.shields.io/badge/docs-latest-blue.svg)](https://sandreza.github.io/TrialDocs/latest)
