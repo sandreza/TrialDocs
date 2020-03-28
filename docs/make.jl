@@ -1,10 +1,6 @@
 push!(LOAD_PATH,"../src/")
 using Documenter, TrialDocs
 
-format = Documenter.HTML(
-    collapselevel = 1
-)
-
 makedocs(
     modules = [TrialDocs],
     pages = [
