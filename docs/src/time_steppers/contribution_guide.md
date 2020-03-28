@@ -7,3 +7,11 @@ Testing
 ```
 solve!(Q, method, dt = dt, linear_solver = whatever)
 ```
+
+
+## Testing Latex
+Testing inline math ``\sqrt[n]{1 + x + x^2 + \ldots}``. Now tsting equation
+
+```math
+\frac{n!}{k! (n-k)!} = \binom{n}{k}
+```

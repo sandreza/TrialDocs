@@ -46,22 +46,20 @@ MyIterativeMethod and function bodies would need to be replaced appropriately fo
 
 ## Struct
 
-A subset of AbstractIterativeLinearSolver needs at least two members, e.g.,
-
+A subset of AbstractIterativeLinearSolver needs at least two members: atol and rtol. The former represents an absolute tolerance and the latter is a relative tolerance. Both can be used to terminate the iteration to determine the convergence criteria. An example struct could be
 ```julia
 struct MyIterativeMethod{FT} <: LS.AbstractIterativeLinearSolver
   atol::FT
   rtol::FT
 end
 ```
-but often has more depending on the kind of iterative solver being used. For example, in a [Krylov Subspace](https://en.wikipedia.org/wiki/Krylov_subspace) method one would need to store a number of vectors which constitute the Krylov subspace.
+but often has more depending on the kind of iterative solver being used.  For example, in a [Krylov Subspace](https://en.wikipedia.org/wiki/Krylov_subspace) method one would need to store a number of vectors which constitute the Krylov subspace.
 
 ## Constructor
 
-The constructor for the struct can be defined any number of ways depending on the needs of the struct itself. Often times this is just used to allocate memory or convergence thresholds. This can also be a good place to define structures that make the iterative solver easier to work with. For example, one would
+The constructor for the struct can be defined any number of ways depending on the needs of the struct itself. Often times this is just used to allocate memory or convergence thresholds. This can also be a good place to define structures that make the iterative solver easier to work with. For example, for a columnwise solver one would want an easy array structure to work with vectors in a columnwise fashion.
 
-In the [Basic Template for an Iterative Solver](@ref)
-
+In [Basic Template for an Iterative Solver](@ref) we used an outer constructor, e.g.,
 ```julia
 # constructor
 function MyIterativeMethod(args...)
@@ -69,6 +67,7 @@ function MyIterativeMethod(args...)
   return MyIterativeMethod(contructor_args...)
 end
 ```
+but we could have also used an inner constructor if desired.
 
 ## Initialize Function
 
@@ -132,13 +131,13 @@ This represents the action of a linear operator L on a vector x, that stores the
 
 ## CliMa Specific Considerations
 
-- Don't take up too much memory.
+- Since GPUs have limited memory, don't take up too much memory.
 - By default a 3D MPI State Array has the following structure ... ,
-- If possible define a preconditioner. Iterative methods are very slow otherwise.
+- If possible define a preconditioner. Iterative methods are typically very slow otherwise.
 
 ## Preconditioners
 
-The code needs to be slightly restructured to allow for preconditioenrs.
+The code needs to be slightly restructured to allow for preconditioners.
 
 ## Writing Tests
 
