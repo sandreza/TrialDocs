@@ -46,15 +46,15 @@ MyIterativeMethod and function bodies would need to be replaced appropriately fo
 
 ## Struct
 
-A struct needs at least two members, e.g.,
+A subset of AbstractIterativeLinearSolver needs at least two members, e.g.,
 
-```
-struct MyIterativeMethod{FT}
+```julia
+struct MyIterativeMethod{FT} <: LS.AbstractIterativeLinearSolver
   atol::FT
   rtol::FT
 end
 ```
-but often has more depending on the kind of iterative solver being used. For example, in a [Krylov Subspace Method](https://en.wikipedia.org/wiki/Krylov_subspace) one would need to store a number of vectors which constitute the Krylov subspace.
+but often has more depending on the kind of iterative solver being used. For example, in a [Krylov Subspace](https://en.wikipedia.org/wiki/Krylov_subspace) method one would need to store a number of vectors which constitute the Krylov subspace.
 
 ## Constructor
 
@@ -79,36 +79,62 @@ function LS.initialize!(linearoperator!, Q, Qrhs, solver::MyIterativeMethod, arg
   return Bool, Int
 end
 ```
-The arguments are as follows
+
+### Arguments
 - linearoperator!: A function that is assumed to have the following signature
 ```julia
 linearoperator!(y, x, args...)
-
+  # body of linear operator
   return nothing
 end
 ```
-This represents the action of a linear operator L on a vector x, that stores the value in the vector y, i.e. Lx = y. The last argument (the args...) is necessary due to how linear operators are defined in CliMa. See for example the IMEX METHODS. 
+This represents the action of a linear operator L on a vector x, that stores the value in the vector y, i.e. Lx = y. The last argument (the args...) is necessary due to how linear operators are defined in CliMa. For example, see the IMEX METHODS.
+- Q: An array
+- Qrhs: An array
+- solver: This is used for dispatch onto whatever abstract iterative solver that is defined
+- args...: This is passed into the linearoperator! function in other parts of the CliMa code. For example, see the IMEX METHODS.
 
-
+### Return
+The initialize function has two return values
+- convergence: a boolean that states whether or not convergence has been achieved after the intialization step
+- iterations: an int that states how many iterations were performed
 
 ## Iteration Function
 
-
 The iteration function needs the following signature
 
-```
-doiteration!(Q, Qrhs, args...)
+```julia
+function LS.doiteration!(linearoperator!, Q, Qrhs, solver::MyIterativeMethod, threshold, args...)
+  # body of iteration
+  return Bool, Int, Float
+end
 ```
 
-An example implementation (that does nothing) would be
-
+### Arguments
+The arguments to the iteration function are as follows
+- linearoperator!: A function that is assumed to have the following signature
+```julia
+linearoperator!(y, x, args...)
+  # body of linear operator
+  return nothing
+end
 ```
-doiteration!(::MyIterativeMethod)
-```
+This represents the action of a linear operator L on a vector x, that stores the value in the vector y, i.e. Lx = y. The last argument (the args...) is necessary due to how linear operators are defined in CliMa. For example, see the IMEX METHODS.
+- Q: (array)
+- Qrhs: (array)
+- solver: (struct). This is used for dispatch onto whatever abstract iterative solver that is defined
+- threshold: (float). For the convergence criteria
+- args...: This is passed into the linearoperator! function in other parts of the CliMa code. For example, see the IMEX METHODS.
+### Return
+- converged: (bool). Convergence boolean
+- iterations: (int). Number of iterations performed
+- residual_norm: (float64). Norm of the residual.
 
 ## CliMa Specific Considerations
 
-Don't take up too much memory. By default a 3D MPI State Array has the following structure ... ,
+- Don't take up too much memory.
+- By default a 3D MPI State Array has the following structure ... ,
+- If possible define a preconditioner. Iterative methods are very slow otherwise.
 
 ## Preconditioners
 
@@ -116,7 +142,7 @@ The code needs to be slightly restructured to allow for preconditioenrs.
 
 ## Writing Tests
 
-Test on small systems where answers can be checked analytically. Check with matrices with easily computable inverses, i.e., the identity matrix or a diagonal matrix. Test with Diverse matrix structures
+Test on small systems where answers can be checked analytically. Check with matrices with easily computable inverses, i.e., the identity matrix or a diagonal matrix. Test with diverse matrix structures. Test with different array types: Arrays, CuArrays, MPIStateArrays, etc. Also test with balance laws to make sure that it can actually be run with IMEX solvers on the 1) CPU 2)GPU and their distributed analogues.
 
 ## Performance Checks
 
