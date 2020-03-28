@@ -1,6 +1,8 @@
 module TrialDocs
 
-export hello, domath
+include("Random/new_functions.jl")
+
+export hello, domath, test_args
 
 """
     hello(who::String)
@@ -15,5 +17,7 @@ hello(who::String) = "Hello, $who"
 Return `x + 5`.
 """
 domath(x::Number) = x + 5
+
+
 
 end # module
