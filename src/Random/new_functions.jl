@@ -2,7 +2,8 @@
 test_args(args...)
 
 # Description
-- Testing to see if I can create documentation from a different folder
+
+Testing to see if I can create documentation from a different folder
 
 # Arguments
 - `args...`: (arbitrary as long as it works with println).
@@ -10,7 +11,7 @@ test_args(args...)
 # Return
 - Nothing
 
-# Additional detials
+# Additional details
 """
 function test_args(args...)
     for i in args

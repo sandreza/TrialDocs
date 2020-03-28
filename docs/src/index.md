@@ -1,6 +1,6 @@
-# Example
+# TrialDocs
 
-Example Julia package repo.
+A Julia Repo for Creating Documentation
 
 ```@autodocs
 Modules = [TrialDocs]
