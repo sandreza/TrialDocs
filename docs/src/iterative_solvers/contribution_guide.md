@@ -1,8 +1,47 @@
 # Contribution Guide for Abstract Iterative Solvers
 
-An abstract iterative solver needs one struct, one constructor, and two functions (initialize! and doiteration!). In order to interface with the rest of CliMa. In what follows we will describe in detail the function signatures, return values, and struct properties necessary to build with CliMA.
+An abstract iterative solver is a module that needs one struct, one constructor, and two functions (initialize! and doiteration!). In order to interface with the rest of [CliMa](https://github.com/climate-machine). In what follows we will describe in detail the function signatures, return values, and struct properties necessary to build with [CliMa](https://github.com/climate-machine).
 
-We will illustrate the method by defining a new struct
+## Basic Template
+
+A basic template of an iterative solver (replace MyIterativeMethod and function bodies appropriately) is as follows:
+
+```julia
+module MyIterativeMethodSolver
+
+export MyIterativeMethod
+
+using ..LinearSolvers
+const LS = LinearSolvers
+
+# The Struct
+struct MyIterativeMethod{FT} <: LS.AbstractIterativeLinearSolver
+  # minimum
+  rtol::FT
+  atol::FT
+  # Add more structre if necessary
+end
+
+# an outer constructor
+function MyIterativeMethod(args...)
+  # body of constructor
+  return MyIterativeMethod(contructor_args...)
+end
+
+# initialize function
+function LS.initialize!(linearoperator!, Q, Qrhs, solver::MyIterativeMethod, args...)
+  # body of initialize function in abstract iterative solver
+  return Bool, Int
+end
+
+# iteration function
+function LS.doiteration!(linearoperator!, Q, Qrhs, solver::MyIterativeMethod, threshold, args...)
+  # body of iteration
+  return Bool, Int, Float
+end
+```
+
+We will describe each component in detail in subsequent sections.
 
 ## Struct
 
@@ -59,3 +98,5 @@ Test on small systems where answers can be checked analytically. Check with matr
 ## Performance Checks
 
 Timing performance can be done with general GPU guidelines
+
+## Conventions
