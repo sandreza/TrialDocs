@@ -1,6 +1,11 @@
 # Contribution Guide for Abstract Iterative Solvers
 
-An abstract iterative solver is a module that needs one struct, one constructor, and two functions (initialize! and doiteration!), in order to interface with the rest of [CliMa](https://github.com/climate-machine). In what follows we will describe in detail the function signatures, return values, and struct properties necessary to build with [CliMa](https://github.com/climate-machine).
+An abstract iterative solver is a **module** that needs **one struct**, ***one constructor**, and **two functions** (initialize! and doiteration!), in order to interface with the rest of [CliMa](https://github.com/climate-machine). In what follows we will describe in detail the function signatures, return values, and struct properties necessary to build with [CliMa](https://github.com/climate-machine).
+
+We have the following concrete implementations:
+1. [GMRES](https://github.com/climate-machine/CLIMA/blob/master/src/LinearSolvers/GeneralizedMinimalResidualSolver.jl)
+1. [Conjugate Residual](https://github.com/climate-machine/CLIMA/blob/master/src/LinearSolvers/GeneralizedConjugateResidualSolver.jl)
+1. [Conjugate Gradient](https://github.com/climate-machine/CLIMA/blob/ans/pcg/src/LinearSolvers/ConjugateGradientSolver.jl)
 
 ## Basic Template for an Iterative Solver
 
@@ -44,7 +49,7 @@ end # end of module
 ```
 MyIterativeMethod and function bodies would need to be replaced appropriately for a particular implementation. We will describe each component in detail in subsequent sections.
 
-## Struct
+### Struct
 
 A subset of AbstractIterativeLinearSolver needs at least two members: atol and rtol. The former represents an absolute tolerance and the latter is a relative tolerance. Both can be used to terminate the iteration to determine the convergence criteria. An example struct could be
 ```julia
@@ -55,7 +60,7 @@ end
 ```
 but often has more depending on the kind of iterative solver being used.  For example, in a [Krylov Subspace](https://en.wikipedia.org/wiki/Krylov_subspace) method one would need to store a number of vectors which constitute the Krylov subspace.
 
-## Constructor
+### Constructor
 
 The constructor for the struct can be defined any number of ways depending on the needs of the struct itself. Often times this is just used to allocate memory or convergence thresholds. This can also be a good place to define structures that make the iterative solver easier to work with. For example, for a columnwise solver one would want an easy array structure to work with vectors in a columnwise fashion.
 
@@ -69,36 +74,37 @@ end
 ```
 but we could have also used an inner constructor if desired.
 
-## Initialize Function
+### Initialize Function
 
 The initialize function needs the following signature
-```
+```julia
 function LS.initialize!(linearoperator!, Q, Qrhs, solver::MyIterativeMethod, args...)
   # body of initialize function in abstract iterative solver
   return Bool, Int
 end
 ```
 
-### Arguments
-- linearoperator!: A function that is assumed to have the following signature
+#### Arguments
+
+1. ```linearoperator!``` A function that is assumed to have the following signature
 ```julia
 linearoperator!(y, x, args...)
-  # body of linear operator
-  return nothing
+    # body of linear operator
+    return nothing
 end
 ```
 This represents the action of a linear operator L on a vector x, that stores the value in the vector y, i.e. Lx = y. The last argument (the args...) is necessary due to how linear operators are defined in CliMa. For example, see the IMEX METHODS.
-- Q: An array
-- Qrhs: An array
-- solver: This is used for dispatch onto whatever abstract iterative solver that is defined
-- args...: This is passed into the linearoperator! function in other parts of the CliMa code. For example, see the IMEX METHODS.
+1. ```Q```    (array) [OVERWRITTEN]
+1. ```Qrhs``` (array)
+1. ```solver``` (struct) used for dispatch
+1. ```args...``` passed to ```linearoperator!``` function in other parts of the CliMa code.
 
-### Return
-The initialize function has two return values
-- convergence: a boolean that states whether or not convergence has been achieved after the intialization step
-- iterations: an int that states how many iterations were performed
+#### Return
+The initialize function must have **2** return values:
+1. ```convergence``` a boolean that states whether or not convergence has been achieved after the initialization step
+1. ```iterations``` an int that states how many iterations were performed
 
-## Iteration Function
+### Iteration Function
 
 The iteration function needs the following signature
 
@@ -109,25 +115,27 @@ function LS.doiteration!(linearoperator!, Q, Qrhs, solver::MyIterativeMethod, th
 end
 ```
 
-### Arguments
-The arguments to the iteration function are as follows
-- linearoperator!: A function that is assumed to have the following signature
+#### Arguments
+The iteration function has the following arguments:
+1. ```linearoperator!``` A function that is assumed to have the following signature
 ```julia
 linearoperator!(y, x, args...)
-  # body of linear operator
-  return nothing
+    # body of linear operator
+    return nothing
 end
 ```
 This represents the action of a linear operator L on a vector x, that stores the value in the vector y, i.e. Lx = y. The last argument (the args...) is necessary due to how linear operators are defined in CliMa. For example, see the IMEX METHODS.
-- Q: (array)
-- Qrhs: (array)
-- solver: (struct). This is used for dispatch onto whatever abstract iterative solver that is defined
-- threshold: (float). For the convergence criteria
-- args...: This is passed into the linearoperator! function in other parts of the CliMa code. For example, see the IMEX METHODS.
-### Return
-- converged: (bool). Convergence boolean
-- iterations: (int). Number of iterations performed
-- residual_norm: (float64). Norm of the residual.
+1. ```Q``` (array)
+1. ```Qrhs``` (array)
+1. ```solver``` (struct). This is used for dispatch onto whatever abstract iterative solver that is defined
+1. ```threshold``` (float). For the convergence criteria
+1. ```args...``` This is passed into the linearoperator! function in other parts of the CliMa code.
+
+#### Return
+The iteration function must have **3** return values:
+1. ```converged``` (bool)
+1. ```iterations``` (int)
+1. ```residual_norm``` (float64)
 
 ## CliMa Specific Considerations
 
@@ -141,11 +149,11 @@ The code needs to be slightly restructured to allow for preconditioners.
 
 ## Writing Tests
 
-Test on small systems where answers can be checked analytically. Check with matrices with easily computable inverses, i.e., the identity matrix or a diagonal matrix. Test with diverse matrix structures. Test with different array types: Arrays, CuArrays, MPIStateArrays, etc. Also test with balance laws to make sure that it can actually be run with IMEX solvers on the 1) CPU 2)GPU and their distributed analogues.
+Test on small systems where answers can be checked analytically. Check with matrices with easily computable inverses, i.e., the identity matrix or a diagonal matrix. Test with diverse matrix structures. Test with different array types: Arrays, CuArrays, MPIStateArrays, etc. Also test with balance laws to make sure that it can actually be run with IMEX solvers on the CPU/GPU and their distributed analogues.
 
 ## Performance Checks
 
-Timing performance can be done with general GPU guidelines
+Timing performance can be done with general CPU/GPU guidelines
 
 ## Conventions
 
