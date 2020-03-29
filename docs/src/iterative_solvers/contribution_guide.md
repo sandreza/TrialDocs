@@ -58,7 +58,7 @@ struct MyIterativeMethod{FT} <: LS.AbstractIterativeLinearSolver
   rtol::FT
 end
 ```
-but often has more depending on the kind of iterative solver being used.  For example, in a [Krylov Subspace](https://en.wikipedia.org/wiki/Krylov_subspace) method one would need to store a number of vectors which constitute the Krylov subspace.
+but often has more depending on the kind of iterative solver being used.  For example, in a Krylov subspace method one would need to store a number of vectors which constitute the [Krylov subspace](https://en.wikipedia.org/wiki/Krylov_subspace).
 
 ### Constructor
 
@@ -85,21 +85,25 @@ end
 ```
 
 
-The intialize function has the following arguments:
-1. ```linearoperator!``` A function that is assumed to have the following signature:
+The intialize function has the following **arguments**:
+1. ```linearoperator!``` (function)
+1. ```Q```    (array) [OVERWRITTEN]
+1. ```Qrhs``` (array)
+1. ```solver``` (struct) used for dispatch
+1. ```args...``` passed to ```linearoperator!``` function
+
+The ```linearoperator!``` function is assumed to have the following signature:
 ```julia
 linearoperator!(y, x, args...)
     # body of linear operator
     return nothing
 end
 ```
-This represents the action of a linear operator ``L`` on a vector ``x``, that stores the value in the vector ``y``, i.e. ``Lx = y``. The last argument (the args...) is necessary due to how linear operators are defined in CliMa.
-1. ```Q```    (array) [OVERWRITTEN]
-1. ```Qrhs``` (array)
-1. ```solver``` (struct) used for dispatch
-1. ```args...``` passed to ```linearoperator!``` function
+It represents action of a linear operator ``L`` on a vector ``x``, that stores the value in the vector ``y``, i.e. ``Lx = y``. The last argument (the args...) is necessary due to how linear operators are defined within CliMa.
 
-The initialize function must have **2** return values:
+The ``` Q ``` and ```Qrhs``` function arguments are supposed to represent the solution of the linear system `LQ = Qrhs` where `L` is the linear operator implicitly defined by ```linearoperator!```.
+
+The initialize function must have **2 return values**:
 1. ```convergence``` (bool)
 1. ```iterations``` (int)
 
@@ -116,22 +120,26 @@ function LS.doiteration!(linearoperator!, Q, Qrhs, solver::MyIterativeMethod, th
 end
 ```
 
-The iteration function has the following arguments:
-1. ```linearoperator!``` A function that is assumed to have the following signature
+The iteration function has the following **arguments**:
+1. ```linearoperator!``` (function)
+1. ```Q``` (array) [OVERWRITTEN]
+1. ```Qrhs``` (array)
+1. ```solver``` (struct). used for dispatch
+1. ```threshold``` (float). for the convergence criteria
+1. ```args...``` passed into the ```linearoperator!``` function
+
+The ```linearoperator!``` function is assumed to have the following signature:
 ```julia
 linearoperator!(y, x, args...)
     # body of linear operator
     return nothing
 end
 ```
-This represents the action of a linear operator ``L`` on a vector ``x``, that stores the value in the vector ``y``, i.e. ``Lx = y``. The last argument (the args...) is necessary due to how linear operators are defined in CliMa.
-1. ```Q``` (array)
-1. ```Qrhs``` (array)
-1. ```solver``` (struct). used for dispatch
-1. ```threshold``` (float). for the convergence criteria
-1. ```args...``` passed into the ```linearoperator!``` function
+It represents action of a linear operator ``L`` on a vector ``x``, that stores the value in the vector ``y``, i.e. ``Lx = y``. The last argument (the args...) is necessary due to how linear operators are defined within CliMa.
 
-The iteration function must have **3** return values:
+The ``` Q ``` and ```Qrhs``` function arguments are supposed to represent the solution of the linear system `LQ = Qrhs` where `L` is the linear operator implicitly defined by ```linearoperator!```.
+
+The iteration function must have **3 return values**:
 1. ```converged``` (bool)
 1. ```iterations``` (int)
 1. ```residual_norm``` (float64)

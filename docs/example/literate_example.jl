@@ -9,4 +9,9 @@ using TrialDocs
 # Specifically the testargs function
 
 test_args_kw(1, "tomorrow", ones(2,2), keyword = "my keyword")
-# The output is
+
+#```math
+#
+# \frac{1}{2}
+#
+#```

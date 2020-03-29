@@ -1,5 +1,8 @@
 push!(LOAD_PATH,"../src/")
-using Documenter, TrialDocs
+using Documenter, Literate, TrialDocs
+
+# should generate on the fly
+examples = ["literate_example.jl"]
 
 makedocs(
     modules = [TrialDocs],
