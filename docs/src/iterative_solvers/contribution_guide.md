@@ -1,6 +1,6 @@
 # Contribution Guide for Abstract Iterative Solvers
 
-An abstract iterative solver is a **module** that needs **one struct**, ***one constructor**, and **two functions** (initialize! and doiteration!), in order to interface with the rest of [CliMa](https://github.com/climate-machine). In what follows we will describe in detail the function signatures, return values, and struct properties necessary to build with [CliMa](https://github.com/climate-machine).
+An abstract iterative solver is a **module** that needs **one struct**, **one constructor**, and **two functions** in order to interface with the rest of [CliMa](https://github.com/climate-machine). In what follows we will describe in detail the function signatures, return values, and struct properties necessary to build with [CliMa](https://github.com/climate-machine).
 
 We have the following concrete implementations:
 1. [GMRES](https://github.com/climate-machine/CLIMA/blob/master/src/LinearSolvers/GeneralizedMinimalResidualSolver.jl)
@@ -84,25 +84,26 @@ function LS.initialize!(linearoperator!, Q, Qrhs, solver::MyIterativeMethod, arg
 end
 ```
 
-#### Arguments
 
-1. ```linearoperator!``` A function that is assumed to have the following signature
+The intialize function has the following arguments:
+1. ```linearoperator!``` A function that is assumed to have the following signature:
 ```julia
 linearoperator!(y, x, args...)
     # body of linear operator
     return nothing
 end
 ```
-This represents the action of a linear operator L on a vector x, that stores the value in the vector y, i.e. Lx = y. The last argument (the args...) is necessary due to how linear operators are defined in CliMa. For example, see the IMEX METHODS.
+This represents the action of a linear operator ``L`` on a vector ``x``, that stores the value in the vector ``y``, i.e. ``Lx = y``. The last argument (the args...) is necessary due to how linear operators are defined in CliMa.
 1. ```Q```    (array) [OVERWRITTEN]
 1. ```Qrhs``` (array)
 1. ```solver``` (struct) used for dispatch
-1. ```args...``` passed to ```linearoperator!``` function in other parts of the CliMa code.
+1. ```args...``` passed to ```linearoperator!``` function
 
-#### Return
 The initialize function must have **2** return values:
-1. ```convergence``` a boolean that states whether or not convergence has been achieved after the initialization step
-1. ```iterations``` an int that states how many iterations were performed
+1. ```convergence``` (bool)
+1. ```iterations``` (int)
+
+The return values keep track of whether or not the iterative algorithm has converged as well as how many times the linear operator was applied.
 
 ### Iteration Function
 
@@ -115,7 +116,6 @@ function LS.doiteration!(linearoperator!, Q, Qrhs, solver::MyIterativeMethod, th
 end
 ```
 
-#### Arguments
 The iteration function has the following arguments:
 1. ```linearoperator!``` A function that is assumed to have the following signature
 ```julia
@@ -124,18 +124,19 @@ linearoperator!(y, x, args...)
     return nothing
 end
 ```
-This represents the action of a linear operator L on a vector x, that stores the value in the vector y, i.e. Lx = y. The last argument (the args...) is necessary due to how linear operators are defined in CliMa. For example, see the IMEX METHODS.
+This represents the action of a linear operator ``L`` on a vector ``x``, that stores the value in the vector ``y``, i.e. ``Lx = y``. The last argument (the args...) is necessary due to how linear operators are defined in CliMa.
 1. ```Q``` (array)
 1. ```Qrhs``` (array)
-1. ```solver``` (struct). This is used for dispatch onto whatever abstract iterative solver that is defined
-1. ```threshold``` (float). For the convergence criteria
-1. ```args...``` This is passed into the linearoperator! function in other parts of the CliMa code.
+1. ```solver``` (struct). used for dispatch
+1. ```threshold``` (float). for the convergence criteria
+1. ```args...``` passed into the ```linearoperator!``` function
 
-#### Return
 The iteration function must have **3** return values:
 1. ```converged``` (bool)
 1. ```iterations``` (int)
 1. ```residual_norm``` (float64)
+
+The return values keep track of whether or not the iterative algorithm has converged as well as how many times the linear operator was applied. The residual norm is useful since it is often used to determine a stopping criteria.
 
 ## CliMa Specific Considerations
 
