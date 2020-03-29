@@ -1,6 +1,7 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 Literate = "98b081ad-f1c9-55d3-8b20-4c87d4299306"
+TrialDocs = "a95043be-bd91-439a-969f-b510d43dd3af"
 
 [compat]
 Documenter = "0.23"

@@ -1,6 +1,6 @@
 # # My Example
 #
-# Here we will try to create a literature example that is also code
+# Here we will try to create a literate example that is also code
 
 # First we import our module
 using TrialDocs
@@ -10,8 +10,6 @@ using TrialDocs
 
 test_args_kw(1, "tomorrow", ones(2,2), keyword = "my keyword")
 
-#```math
-#
-# \frac{1}{2}
-#
-#```
+# ```math
+#   \frac{1}{2}
+# ```
