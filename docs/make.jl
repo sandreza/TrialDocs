@@ -1,7 +1,7 @@
 push!(LOAD_PATH,"../src/")
-using Documenter, Literate, TrialDocs
+using Documenter, TrialDocs
 
-
+#=
 const examples_directory = pwd() * "/docs/example/"
 const output_directory = pwd() * "/docs/src/generated/"
 # should generate on the fly
@@ -12,6 +12,10 @@ for example in examples
     Literate.markdown(example_filepath, output_directory, documenter = true)
 end
 
+"Examples" => [
+    "first example" => "generated/literate_example.md"
+],
+=#
 
 makedocs(
     modules = [TrialDocs],
@@ -20,9 +24,6 @@ makedocs(
         "Contribution Guide" => [
             "Iterative Solvers" => "iterative_solvers/contribution_guide.md",
             "Time Stepping" => "time_steppers/contribution_guide.md",
-        ],
-        "Examples" => [
-            "first example" => "generated/literate_example.md"
         ],
         "Function Index" => "function_index.md"
     ],
