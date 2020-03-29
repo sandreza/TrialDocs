@@ -2,8 +2,8 @@ push!(LOAD_PATH,"../src/")
 using Documenter, Literate, TrialDocs
 
 
-const examples_directory = pwd() * "docs/src/example/"
-const output_directory = pwd() * "docs/src/generated/"
+const examples_directory = pwd() * "/docs/src/example/"
+const output_directory = pwd() * "/docs/src/generated/"
 # should generate on the fly
 examples = ["literate_example.jl"]
 
