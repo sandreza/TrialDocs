@@ -1,143 +1,155 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>first example · TrialDocs</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link href="../../assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><h1>TrialDocs</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" id="search-form" action="../../search/"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li><a class="toctext" href="../../">Home</a></li><li><span class="toctext">Contribution Guide</span><ul><li><a class="toctext" href="../../iterative_solvers/contribution_guide/">Iterative Solvers</a></li><li><a class="toctext" href="../../time_steppers/contribution_guide/">Time Stepping</a></li></ul></li><li><span class="toctext">Examples</span><ul><li class="current"><a class="toctext" href>first example</a><ul class="internal"></ul></li></ul></li><li><a class="toctext" href="../../function_index/">Function Index</a></li></ul></nav><article id="docs"><header><nav><ul><li>Examples</li><li><a href>first example</a></li></ul><a class="edit-page" href="https://github.com/sandreza/TrialDocs/blob/master/docs/example/literate_example.jl"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span>first example</span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="My-Example-1" href="#My-Example-1">My Example</a></h1><p>Here we will try to create a literate example that is also code</p><p>First we import our module</p><pre><code class="language-julia">using TrialDocs, Plots</code></pre><p>Now we use the functions in the module Specifically the testargs function</p><pre><code class="language-julia">test_args_kw(1, &quot;tomorrow&quot;, ones(2,2), keyword = &quot;my keyword&quot;)</code></pre><pre><code class="language-none">The function arguments are
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>first example · TrialDocs</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link href="../../assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><h1>TrialDocs</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" id="search-form" action="../../search/"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li><a class="toctext" href="../../">Home</a></li><li><span class="toctext">Contribution Guide</span><ul><li><a class="toctext" href="../../iterative_solvers/contribution_guide/">Iterative Solvers</a></li><li><a class="toctext" href="../../time_steppers/contribution_guide/">Time Stepping</a></li></ul></li><li><span class="toctext">Examples</span><ul><li class="current"><a class="toctext" href>first example</a><ul class="internal"><li><a class="toctext" href="#Math-1">Math</a></li><li><a class="toctext" href="#Plotting-1">Plotting</a></li></ul></li></ul></li><li><a class="toctext" href="../../function_index/">Function Index</a></li></ul></nav><article id="docs"><header><nav><ul><li>Examples</li><li><a href>first example</a></li></ul><a class="edit-page" href="https://github.com/sandreza/TrialDocs/blob/master/docs/example/literate_example.jl"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span>first example</span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="My-Example-1" href="#My-Example-1">My Example</a></h1><p>Here we will try to create a literate example that is also code</p><p>First we import our module</p><pre><code class="language-julia">using TrialDocs, Plots</code></pre><p>Now we use the functions in the module Specifically the test<em>args</em>kw function</p><pre><code class="language-julia">test_args_kw(1, &quot;tomorrow&quot;, ones(2,2), keyword = &quot;my keyword&quot;)</code></pre><pre><code class="language-none">The function arguments are
 1
 tomorrow
 [1.0 1.0; 1.0 1.0]
 The keyword argument is
-my keyword</code></pre><div>\[  \frac{1}{2}\]</div><pre><code class="language-julia">x = randn(3)
-plot(x)</code></pre><?xml version="1.0" encoding="utf-8"?>
+my keyword</code></pre><h2><a class="nav-anchor" id="Math-1" href="#Math-1">Math</a></h2><p>We can test some math</p><div>\[  \frac{1}{2}\]</div><h2><a class="nav-anchor" id="Plotting-1" href="#Plotting-1">Plotting</a></h2><p>Now we can test plotting</p><pre><code class="language-julia">x = randn(3)
+scatter(x, grid = true, gridstyle = :dash, gridalpha = 0.25, framestyle = :box, label = false, title = &quot;simple graph&quot;, xlabel = &quot;horizontal axis&quot;, ylabel = &quot;vertical axis&quot;)</code></pre><?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="400" viewBox="0 0 2400 1600">
 <defs>
-  <clipPath id="clip7200">
+  <clipPath id="clip7000">
     <rect x="0" y="0" width="2400" height="1600"/>
   </clipPath>
 </defs>
-<path clip-path="url(#clip7200)" d="
+<path clip-path="url(#clip7000)" d="
 M0 1600 L2400 1600 L2400 0 L0 0  Z
   " fill="#ffffff" fill-rule="evenodd" fill-opacity="1"/>
 <defs>
-  <clipPath id="clip7201">
+  <clipPath id="clip7001">
     <rect x="480" y="0" width="1681" height="1600"/>
   </clipPath>
 </defs>
-<path clip-path="url(#clip7200)" d="
-M86.9921 1521.01 L2352.76 1521.01 L2352.76 47.2441 L86.9921 47.2441  Z
+<path clip-path="url(#clip7000)" d="
+M102.74 1505.26 L2352.76 1505.26 L2352.76 62.9921 L102.74 62.9921  Z
   " fill="#ffffff" fill-rule="evenodd" fill-opacity="1"/>
 <defs>
-  <clipPath id="clip7202">
-    <rect x="86" y="47" width="2267" height="1475"/>
+  <clipPath id="clip7002">
+    <rect x="102" y="62" width="2251" height="1443"/>
   </clipPath>
 </defs>
-<polyline clip-path="url(#clip7202)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.1; fill:none" points="
-  151.118,1521.01 151.118,47.2441 
+<polyline clip-path="url(#clip7002)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.25; fill:none" stroke-dasharray="8, 5" points="
+  166.42,1505.26 166.42,62.9921 
   "/>
-<polyline clip-path="url(#clip7202)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.1; fill:none" points="
-  685.496,1521.01 685.496,47.2441 
+<polyline clip-path="url(#clip7002)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.25; fill:none" stroke-dasharray="8, 5" points="
+  697.084,1505.26 697.084,62.9921 
   "/>
-<polyline clip-path="url(#clip7202)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.1; fill:none" points="
-  1219.87,1521.01 1219.87,47.2441 
+<polyline clip-path="url(#clip7002)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.25; fill:none" stroke-dasharray="8, 5" points="
+  1227.75,1505.26 1227.75,62.9921 
   "/>
-<polyline clip-path="url(#clip7202)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.1; fill:none" points="
-  1754.25,1521.01 1754.25,47.2441 
+<polyline clip-path="url(#clip7002)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.25; fill:none" stroke-dasharray="8, 5" points="
+  1758.41,1505.26 1758.41,62.9921 
   "/>
-<polyline clip-path="url(#clip7202)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.1; fill:none" points="
-  2288.63,1521.01 2288.63,47.2441 
+<polyline clip-path="url(#clip7002)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.25; fill:none" stroke-dasharray="8, 5" points="
+  2289.08,1505.26 2289.08,62.9921 
   "/>
-<polyline clip-path="url(#clip7202)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.1; fill:none" points="
-  86.9921,1481.7 2352.76,1481.7 
+<polyline clip-path="url(#clip7002)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.25; fill:none" stroke-dasharray="8, 5" points="
+  102.74,1330.09 2352.76,1330.09 
   "/>
-<polyline clip-path="url(#clip7202)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.1; fill:none" points="
-  86.9921,1135.3 2352.76,1135.3 
+<polyline clip-path="url(#clip7002)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.25; fill:none" stroke-dasharray="8, 5" points="
+  102.74,1111.56 2352.76,1111.56 
   "/>
-<polyline clip-path="url(#clip7202)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.1; fill:none" points="
-  86.9921,788.907 2352.76,788.907 
+<polyline clip-path="url(#clip7002)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.25; fill:none" stroke-dasharray="8, 5" points="
+  102.74,893.035 2352.76,893.035 
   "/>
-<polyline clip-path="url(#clip7202)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.1; fill:none" points="
-  86.9921,442.512 2352.76,442.512 
+<polyline clip-path="url(#clip7002)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.25; fill:none" stroke-dasharray="8, 5" points="
+  102.74,674.506 2352.76,674.506 
   "/>
-<polyline clip-path="url(#clip7202)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.1; fill:none" points="
-  86.9921,96.1179 2352.76,96.1179 
+<polyline clip-path="url(#clip7002)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.25; fill:none" stroke-dasharray="8, 5" points="
+  102.74,455.977 2352.76,455.977 
   "/>
-<polyline clip-path="url(#clip7200)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
-  86.9921,1521.01 2352.76,1521.01 
+<polyline clip-path="url(#clip7002)" style="stroke:#000000; stroke-width:2; stroke-opacity:0.25; fill:none" stroke-dasharray="8, 5" points="
+  102.74,237.449 2352.76,237.449 
   "/>
-<polyline clip-path="url(#clip7200)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
-  86.9921,1521.01 86.9921,47.2441 
+<polyline clip-path="url(#clip7000)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  102.74,1505.26 2352.76,1505.26 
   "/>
-<polyline clip-path="url(#clip7200)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
-  151.118,1521.01 151.118,1503.32 
+<polyline clip-path="url(#clip7000)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  102.74,1505.26 102.74,62.9921 
   "/>
-<polyline clip-path="url(#clip7200)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
-  685.496,1521.01 685.496,1503.32 
+<polyline clip-path="url(#clip7000)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  166.42,1505.26 166.42,1487.95 
   "/>
-<polyline clip-path="url(#clip7200)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
-  1219.87,1521.01 1219.87,1503.32 
+<polyline clip-path="url(#clip7000)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  697.084,1505.26 697.084,1487.95 
   "/>
-<polyline clip-path="url(#clip7200)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
-  1754.25,1521.01 1754.25,1503.32 
+<polyline clip-path="url(#clip7000)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  1227.75,1505.26 1227.75,1487.95 
   "/>
-<polyline clip-path="url(#clip7200)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
-  2288.63,1521.01 2288.63,1503.32 
+<polyline clip-path="url(#clip7000)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  1758.41,1505.26 1758.41,1487.95 
   "/>
-<polyline clip-path="url(#clip7200)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
-  86.9921,1481.7 114.181,1481.7 
+<polyline clip-path="url(#clip7000)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  2289.08,1505.26 2289.08,1487.95 
   "/>
-<polyline clip-path="url(#clip7200)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
-  86.9921,1135.3 114.181,1135.3 
+<polyline clip-path="url(#clip7000)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  102.74,1330.09 129.74,1330.09 
   "/>
-<polyline clip-path="url(#clip7200)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
-  86.9921,788.907 114.181,788.907 
+<polyline clip-path="url(#clip7000)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  102.74,1111.56 129.74,1111.56 
   "/>
-<polyline clip-path="url(#clip7200)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
-  86.9921,442.512 114.181,442.512 
+<polyline clip-path="url(#clip7000)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  102.74,893.035 129.74,893.035 
   "/>
-<polyline clip-path="url(#clip7200)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
-  86.9921,96.1179 114.181,96.1179 
+<polyline clip-path="url(#clip7000)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  102.74,674.506 129.74,674.506 
   "/>
-<g clip-path="url(#clip7200)">
-<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:middle;" transform="rotate(0, 151.118, 1575.01)" x="151.118" y="1575.01">1.0</text>
+<polyline clip-path="url(#clip7000)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  102.74,455.977 129.74,455.977 
+  "/>
+<polyline clip-path="url(#clip7000)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  102.74,237.449 129.74,237.449 
+  "/>
+<g clip-path="url(#clip7000)">
+<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:middle;" transform="rotate(0, 166.42, 1559.26)" x="166.42" y="1559.26">1.0</text>
 </g>
-<g clip-path="url(#clip7200)">
-<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:middle;" transform="rotate(0, 685.496, 1575.01)" x="685.496" y="1575.01">1.5</text>
+<g clip-path="url(#clip7000)">
+<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:middle;" transform="rotate(0, 697.084, 1559.26)" x="697.084" y="1559.26">1.5</text>
 </g>
-<g clip-path="url(#clip7200)">
-<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:middle;" transform="rotate(0, 1219.87, 1575.01)" x="1219.87" y="1575.01">2.0</text>
+<g clip-path="url(#clip7000)">
+<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:middle;" transform="rotate(0, 1227.75, 1559.26)" x="1227.75" y="1559.26">2.0</text>
 </g>
-<g clip-path="url(#clip7200)">
-<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:middle;" transform="rotate(0, 1754.25, 1575.01)" x="1754.25" y="1575.01">2.5</text>
+<g clip-path="url(#clip7000)">
+<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:middle;" transform="rotate(0, 1758.41, 1559.26)" x="1758.41" y="1559.26">2.5</text>
 </g>
-<g clip-path="url(#clip7200)">
-<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:middle;" transform="rotate(0, 2288.63, 1575.01)" x="2288.63" y="1575.01">3.0</text>
+<g clip-path="url(#clip7000)">
+<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:middle;" transform="rotate(0, 2289.08, 1559.26)" x="2289.08" y="1559.26">3.0</text>
 </g>
-<g clip-path="url(#clip7200)">
-<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:end;" transform="rotate(0, 62.9921, 1499.2)" x="62.9921" y="1499.2">-1.0</text>
+<g clip-path="url(#clip7000)">
+<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:end;" transform="rotate(0, 78.7402, 1347.59)" x="78.7402" y="1347.59">-1.00</text>
 </g>
-<g clip-path="url(#clip7200)">
-<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:end;" transform="rotate(0, 62.9921, 1152.8)" x="62.9921" y="1152.8">-0.5</text>
+<g clip-path="url(#clip7000)">
+<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:end;" transform="rotate(0, 78.7402, 1129.06)" x="78.7402" y="1129.06">-0.75</text>
 </g>
-<g clip-path="url(#clip7200)">
-<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:end;" transform="rotate(0, 62.9921, 806.407)" x="62.9921" y="806.407">0.0</text>
+<g clip-path="url(#clip7000)">
+<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:end;" transform="rotate(0, 78.7402, 910.535)" x="78.7402" y="910.535">-0.50</text>
 </g>
-<g clip-path="url(#clip7200)">
-<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:end;" transform="rotate(0, 62.9921, 460.012)" x="62.9921" y="460.012">0.5</text>
+<g clip-path="url(#clip7000)">
+<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:end;" transform="rotate(0, 78.7402, 692.006)" x="78.7402" y="692.006">-0.25</text>
 </g>
-<g clip-path="url(#clip7200)">
-<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:end;" transform="rotate(0, 62.9921, 113.618)" x="62.9921" y="113.618">1.0</text>
+<g clip-path="url(#clip7000)">
+<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:end;" transform="rotate(0, 78.7402, 473.477)" x="78.7402" y="473.477">0.00</text>
 </g>
-<polyline clip-path="url(#clip7202)" style="stroke:#009af9; stroke-width:4; stroke-opacity:1; fill:none" points="
-  151.118,88.9544 1219.87,1479.3 2288.63,976.136 
+<g clip-path="url(#clip7000)">
+<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:end;" transform="rotate(0, 78.7402, 254.949)" x="78.7402" y="254.949">0.25</text>
+</g>
+<polyline clip-path="url(#clip7002)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  102.74,62.9921 2352.76,62.9921 
   "/>
-<path clip-path="url(#clip7200)" d="
-M1989.93 251.724 L2280.76 251.724 L2280.76 130.764 L1989.93 130.764  Z
-  " fill="#ffffff" fill-rule="evenodd" fill-opacity="1"/>
-<polyline clip-path="url(#clip7200)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
-  1989.93,251.724 2280.76,251.724 2280.76,130.764 1989.93,130.764 1989.93,251.724 
+<polyline clip-path="url(#clip7002)" style="stroke:#000000; stroke-width:4; stroke-opacity:1; fill:none" points="
+  2352.76,1505.26 2352.76,62.9921 
   "/>
-<polyline clip-path="url(#clip7200)" style="stroke:#009af9; stroke-width:4; stroke-opacity:1; fill:none" points="
-  2013.93,191.244 2157.93,191.244 
-  "/>
-<g clip-path="url(#clip7200)">
-<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:48px; text-anchor:start;" transform="rotate(0, 2181.93, 208.744)" x="2181.93" y="208.744">y1</text>
+<g clip-path="url(#clip7000)">
+<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:84px; text-anchor:middle;" transform="rotate(0, 1227.75, 73.2)" x="1227.75" y="73.2">simple graph</text>
 </g>
+<g clip-path="url(#clip7000)">
+<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:66px; text-anchor:middle;" transform="rotate(0, 1227.75, 1639.12)" x="1227.75" y="1639.12">horizontal axis</text>
+</g>
+<g clip-path="url(#clip7000)">
+<text style="fill:#000000; fill-opacity:1; font-family:Arial,Helvetica Neue,Helvetica,sans-serif; font-size:66px; text-anchor:middle;" transform="rotate(-90, -78.6002, 784.126)" x="-78.6002" y="784.126">vertical axis</text>
+</g>
+<circle clip-path="url(#clip7002)" cx="166.42" cy="1464.44" r="14" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip7002)" cx="1227.75" cy="779.79" r="14" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
+<circle clip-path="url(#clip7002)" cx="2289.08" cy="103.811" r="14" fill="#009af9" fill-rule="evenodd" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="3.2"/>
 </svg>
 <hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p><footer><hr/><a class="previous" href="../../time_steppers/contribution_guide/"><span class="direction">Previous</span><span class="title">Time Stepping</span></a><a class="next" href="../../function_index/"><span class="direction">Next</span><span class="title">Function Index</span></a></footer></article></body></html>
