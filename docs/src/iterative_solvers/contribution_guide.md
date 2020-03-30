@@ -147,9 +147,37 @@ The iteration function must have **3 return values**:
 The return values keep track of whether or not the iterative algorithm has converged as well as how many times the linear operator was applied. The residual norm is useful since it is often used to determine a stopping criteria.
 
 ## CliMa Specific Considerations
+An MPIStateArray ```Q``` in 3D, has the following structure by default:
+```julia
+size(Q) = (n_ijk, n_s, n_e)
+```
+where
+1. ```n_ijk``` is the number of Guass-Lobatto points per element
+1. ```n_s``` is the number of states
+1. ```n_e``` is the number of elements
 
+In three dimensions, if one wants to operator in a columnwise fashion (with a stacked-brick topology) it is easiest to reshape the array into the following form
+```julia
+alias_Q = reshape(Q, (n_i, n_j, n_k, n_s, n_ev, n_eh))
+```
+where
+1. ```n_i``` is the number of Guass-Lobatto points per element within element that are aligned with one of the horizontal directions.
+1. ```n_j``` is the number of Guass-Lobatto points per element within element that are aligned with another one of the horizontal directions.
+1. ```n_k``` is the number of Guass-Lobatto points within element that are aligned with the vertical direction.
+1. ```n_s``` is the number of states
+1. ```n_ev``` is the number of elements in the vertical direction
+1. ```n_eh``` is the number of elements in the horizontal direction
+
+Note: ```n_i x n_j x n_k = n_ijk``` and ```n_ev x n_eh = n_e```.
+
+Thus if one wants to operate on a column for a fixed state index (let's say the int ```s```) and a fixed horizontal coordinate (let's say fixed ints ```i```, ```j```, ```eh```), then one could operator on the state:
+```julia
+one_column = alias_Q[i, j, :, s, :, eh]
+```
+which are the third and fifth argument in the MPIStateArray
+
+Some extra tips are:
 - Since GPUs have limited memory, don't take up too much memory.
-- By default a 3D MPI State Array has the following structure ... ,
 - If possible define a preconditioner. Iterative methods are typically very slow otherwise.
 
 ## Preconditioners
