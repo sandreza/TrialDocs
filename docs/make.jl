@@ -1,7 +1,8 @@
 push!(LOAD_PATH,"../src/")
-using Documenter, TrialDocs
+using Documenter, Literate, TrialDocs
 
 #=
+# doesn't necessarily need to be generated on the fly
 const examples_directory = pwd() * "/docs/example/"
 const output_directory = pwd() * "/docs/src/generated/"
 # should generate on the fly
