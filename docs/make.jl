@@ -2,6 +2,14 @@ push!(LOAD_PATH,"../src/")
 using Documenter, Literate, TrialDocs
 
 #=
+If Literate is included then the following must be added to the .travis.yml file
+julia --project=docs/ -e 'using Pkg; Pkg.instantiate();
+                    Pkg.add("Documenter");
+                    Pkg.add("Literate");
+                    Pkg.add("Plots");
+                    Pkg.develop(PackageSpec(path=pwd()))'
+specifically the lines Pkg.add("Documenter"); Pkg.add("Literate"); Pkg.add("Plots");
+#=
 # doesn't necessarily need to be generated on the fly
 const examples_directory = pwd() * "/docs/example/"
 const output_directory = pwd() * "/docs/src/generated/"
