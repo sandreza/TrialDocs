@@ -9,7 +9,7 @@ julia --project=docs/ -e 'using Pkg; Pkg.instantiate();
                     Pkg.add("Plots");
                     Pkg.develop(PackageSpec(path=pwd()))'
 specifically the lines Pkg.add("Documenter"); Pkg.add("Literate"); Pkg.add("Plots");
-#=
+=#
 # doesn't necessarily need to be generated on the fly
 const examples_directory = pwd() * "/docs/example/"
 const output_directory = pwd() * "/docs/src/generated/"
@@ -22,7 +22,6 @@ for example in examples
 end
 
 
-=#
 
 makedocs(
     modules = [TrialDocs],
