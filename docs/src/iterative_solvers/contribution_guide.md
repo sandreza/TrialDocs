@@ -147,6 +147,9 @@ The iteration function must have **3 return values**:
 The return values keep track of whether or not the iterative algorithm has converged as well as how many times the linear operator was applied. The residual norm is useful since it is often used to determine a stopping criteria.
 
 ## CliMa Specific Considerations
+There are several code considerations specific to CliMa. We will describe some of these in the following subsections
+
+### MPI State Arrays
 An MPIStateArray ```Q``` in 3D, has the following structure by default:
 ```julia
 size(Q) = (n_ijk, n_s, n_e)
@@ -174,9 +177,12 @@ Thus if one wants to operate on a column for a fixed state index (let's say the 
 ```julia
 one_column = alias_Q[i, j, :, s, :, eh]
 ```
-which are the third and fifth argument in the MPIStateArray
+which are the third and fifth argument in the MPIStateArray.
 
-Some extra tips are:
+Another important fact is that one cannot broadcast MPIStateArrays. Thus if one has an MPIStateArray ```Q``` one often instead must work with ```Q.data```. Also one cannot reshape MPIStateArrays.
+
+### Extra Considerations
+
 - Since GPUs have limited memory, don't take up too much memory.
 - If possible define a preconditioner. Iterative methods are typically very slow otherwise.
 
