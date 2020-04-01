@@ -49,6 +49,17 @@ And end of table
 
 Now I can test footnote. [^1]
 
+
+## Warnings
+
+!!! warning
+  check this
+
+!!! tip
+  I wonder if tips will works
+
+
+
 I guess it might not work
 
 [^1]: A footnote
