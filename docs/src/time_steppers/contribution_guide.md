@@ -52,10 +52,11 @@ Now I can test footnote. [^1]
 
 ## Warnings
 
-!!! warning check this
+!!! warning
+  check this
 
 !!! tip
-I wonder if tips will works
+    I wonder if tips will works
 
 
 
