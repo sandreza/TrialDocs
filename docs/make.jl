@@ -13,8 +13,8 @@ specifically the lines Pkg.add("Documenter"); Pkg.add("Literate"); Pkg.add("Plot
 # doesn't necessarily need to be generated on the fly
 const examples_directory = pwd() * "/docs/example/"
 const output_directory = pwd() * "/docs/src/generated/"
-# should generate on the fly
-examples = ["literate_example.jl"]
+# read the examples in the directory
+examples = readdir(examples_directory)
 
 for example in examples
     example_filepath = examples_directory * example
