@@ -21,3 +21,4 @@ x = randn(3)
 scatter(x, grid = true, gridstyle = :dash, gridalpha = 0.25, framestyle = :box, label = false, title = "simple graph", xlabel = "horizontal axis", ylabel = "vertical axis")
 
 # !!! tip
+#     maybe?

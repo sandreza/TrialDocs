@@ -53,7 +53,7 @@ Now I can test footnote. [^1]
 ## Warnings
 
 !!! warning
-  check this
+    check this
 
 !!! tip
     I wonder if tips will works
